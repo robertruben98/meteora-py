@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "meteora-py"
+version = "0.1.0"
+description = "Typed Python client for the Meteora DLMM Data API on Solana (pools, metrics, OHLCV, fees, APR/APY)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Robert Ruben" }]
+keywords = ["meteora", "dlmm", "solana", "liquidity", "defi", "amm", "apy", "apr"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.24",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "respx>=0.20",
+    "mypy>=1.8",
+    "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/robertruben98/meteora-py"
+Repository = "https://github.com/robertruben98/meteora-py"
+Documentation = "https://docs.meteora.ag"
+Issues = "https://github.com/robertruben98/meteora-py/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/meteora"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/meteora", "README.md", "LICENSE"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W", "C4", "SIM"]
+# UP007/UP045 would push to PEP 604 `X | None`, and UP006 to bare `list`/`dict`,
+# in annotations that pydantic re-evaluates at runtime on Python 3.9. Keep
+# typing.Optional/Union/List/Dict so the models build cleanly on 3.9.
+ignore = ["UP006", "UP007", "UP035", "UP045"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+files = ["src", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["respx.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+    "integration: live network tests against the real Meteora API (deselected by default)",
+]
+addopts = "-m 'not integration'"
