@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/robertruben98/meteora-py/actions/workflows/ci.yml/badge.svg)](https://github.com/robertruben98/meteora-py/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/meteora-py.svg)](https://pypi.org/project/meteora-py/)
+[![Docs](https://img.shields.io/badge/docs-online-blue)](https://robertruben98.github.io/meteora-py/)
 [![Python](https://img.shields.io/pypi/pyversions/meteora-py.svg)](https://pypi.org/project/meteora-py/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
