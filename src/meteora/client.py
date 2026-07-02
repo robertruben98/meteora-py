@@ -57,7 +57,7 @@ class MeteoraClient(_BaseClient):
         with MeteoraClient() as client:
             stats = client.get_protocol_metrics()
             print(stats.total_pools)
-            page = client.get_pools(page=1, page_size=10, sort_by="tvl")
+            page = client.get_pools(page=1, page_size=10, sort_by="tvl:desc")
             for pool in page.data:
                 print(pool.name, pool.tvl, pool.apy)
     """
@@ -360,7 +360,7 @@ class AsyncMeteoraClient(_BaseClient):
             page_size: Number of pools per page.
             query: Optional free-text filter.
             sort_by: Optional server-side sort field.
-            filter_by: Optional time window for window-scoped metrics.
+            filter_by: Optional server-side filter expression in ``"<field>:<value>"`` form (e.g. ``"has_farm:true"``), passed through verbatim.
 
         Returns:
             A :class:`meteora.models.PoolsPage` envelope.
