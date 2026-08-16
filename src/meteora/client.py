@@ -360,7 +360,8 @@ class AsyncMeteoraClient(_BaseClient):
             page_size: Number of pools per page.
             query: Optional free-text filter.
             sort_by: Optional server-side sort field.
-            filter_by: Optional server-side filter expression in ``"<field>:<value>"`` form (e.g. ``"has_farm:true"``), passed through verbatim.
+            filter_by: Optional server-side filter expression in ``"<field>:<value>"``
+                form (e.g. ``"has_farm:true"``), passed through verbatim.
 
         Returns:
             A :class:`meteora.models.PoolsPage` envelope.

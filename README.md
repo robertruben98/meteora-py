@@ -52,10 +52,12 @@ with MeteoraClient() as client:
 import asyncio
 from meteora import AsyncMeteoraClient
 
+
 async def main() -> None:
     async with AsyncMeteoraClient() as client:
         stats = await client.get_protocol_metrics()
         print(stats.total_pools)
+
 
 asyncio.run(main())
 ```
